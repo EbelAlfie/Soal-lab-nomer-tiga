@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFDFD"
+    tools:context=".ProductInformation">
+
+    <!-- TODO: Update blank fragment layout -->
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/imageView2"
+            android:layout_width="match_parent"
+            android:layout_height="154dp"
+            android:background="#F6F1F1"
+            android:scaleType="centerCrop"
+            android:src="@drawable/gambarbebasplaceholder" />
+
+        <TextView
+            android:id="@+id/namaProduks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView2"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Nama produk: "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/namaProduktampil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/imageView2"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/namaProduks"
+            android:text="Nama produk "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/descproduks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/namaProduks"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Deskripsi: "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/descproduktampil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/namaProduks"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/descproduks"
+            android:text="Deskripsi "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/tanggalproduks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descproduks"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="tanggal produk: "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/tanggalproduktampil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/descproduks"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/tanggalproduks"
+            android:text="tanggal produk "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/hargaproduks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tanggalproduks"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Harga produk: "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/hargaproduktampil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tanggalproduks"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/hargaproduks"
+            android:text="Harga produk: "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/kuantitasproduks"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hargaproduks"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:text="Jumlah produk: "
+            android:textSize="15dp" />
+
+        <TextView
+            android:id="@+id/kuantitasproduktampil"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/hargaproduks"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_toRightOf="@id/kuantitasproduks"
+            android:text="Jumlah produk"
+            android:textSize="15dp" />
+    </RelativeLayout>
+
+</FrameLayout>

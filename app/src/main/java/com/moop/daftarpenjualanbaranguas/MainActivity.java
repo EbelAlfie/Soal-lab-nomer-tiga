@@ -2,21 +2,21 @@ package com.moop.daftarpenjualanbaranguas;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
-import android.widget.Toast;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.Locale;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener{
+public class MainActivity extends AppCompatActivity implements JualBeliAdapter.OnitemClickListener {
     private RecyclerView recyclerView ;
     private JualBeliAdapter adapter ;
     private ArrayList<DataModel> datas;
@@ -42,11 +42,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         datas = new ArrayList<>() ;
 
-        adapter = new JualBeliAdapter(getApplicationContext(), datas) ;
+        adapter = new JualBeliAdapter(getApplicationContext(), datas, this) ;
 
         recyclerView.setAdapter(adapter);
 
-        navigate.setOnClickListener(this);
+        adapter.setOnItemCLickedListener(this);
+
         searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
@@ -56,6 +57,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             public boolean onQueryTextChange(String newText) {
                 filterList(newText) ;
                 return true;
+            }
+        });
+
+        navigate.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent inten = new Intent(getApplicationContext(), TestAdd.class);
+                startActivityForResult(inten, 12);
             }
         });
     }
@@ -69,11 +78,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         }
         adapter.setList(queryData);
     }
-    @Override
-    public void onClick(View view) {
-        Intent inten = new Intent(getApplicationContext(), TestAdd.class);
-        startActivityForResult(inten, 12);
-    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -84,5 +88,18 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             datas.add(passed) ;
             adapter.setList(datas);
         }
+    }
+
+    @Override
+    public void onItemClick(int position) {
+        Bundle bundle = new Bundle() ;
+        bundle.putParcelable("ItemToDisplay", datas.get(position));
+        Fragment productDetail = new ProductInformation();
+        productDetail.setArguments(bundle);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+        ft.replace(R.id.linearLayout, productDetail);
+        ft.addToBackStack(null);
+        ft.commit() ;
     }
 }

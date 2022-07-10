@@ -33,25 +33,10 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/tanggalproduktxt"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/produknya"
-            android:text="tanggal: " />
-
-        <TextView
-            android:id="@+id/tanggalproduk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/tanggalproduktxt"
-            android:layout_below="@+id/produknya"
-            android:text="tanggal" />
-
-        <TextView
             android:id="@+id/deskripsiproduknya"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/tanggalproduk"
+            android:layout_below="@+id/produknya"
             android:textStyle="bold"
             android:text="Deskripsi\t" />
 
