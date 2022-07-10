@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginBottom="10dp"
     android:backgroundTint="#E8DFDF"
+    android:layout_margin="5dp"
+    app:contentPadding="10dp"
     android:elevation="10dp"
     app:cardCornerRadius="10dp">
 
@@ -12,62 +14,75 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <TextView
-            android:id="@+id/namaProduk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Nama:\t" />
+        <ImageView
+            android:id="@+id/gambarnya"
+            android:layout_width="match_parent"
+            android:layout_height="133dp"
+            android:layout_centerHorizontal="true"
+            android:scaleType="centerCrop"
+            android:src="@drawable/gambarbebasplaceholder" />
 
         <TextView
             android:id="@+id/produknya"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_toRightOf="@+id/namaProduk"
-            android:text="Nama produk " />
+            android:layout_below="@id/gambarnya"
+            android:text="Nama produk "
+            android:textColor="@color/black"
+            android:textSize="20dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tanggalproduktxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/produknya"
+            android:text="tanggal: " />
+
+        <TextView
+            android:id="@+id/tanggalproduk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/tanggalproduktxt"
+            android:layout_below="@+id/produknya"
+            android:text="tanggal" />
+
+        <TextView
+            android:id="@+id/deskripsiproduknya"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tanggalproduk"
+            android:textStyle="bold"
+            android:text="Deskripsi\t" />
 
         <TextView
             android:id="@+id/hargaProduk"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/namaProduk"
-            android:text="Harga:\t" />
+            android:layout_below="@+id/deskripsiproduknya"
+            android:text="Harga:\t"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/hargaproduknya"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/produknya"
+            android:layout_below="@id/deskripsiproduknya"
             android:layout_toRightOf="@id/hargaProduk"
-            android:text="harga produk" />
+            android:text="harga produk"
+            android:textColor="@color/black"
+            android:textSize="15dp"
+            android:textStyle="bold" />
 
-        <TextView
-            android:id="@+id/tanggalProduk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/hargaProduk"
-            android:text="Tanggal:\t" />
-
-        <TextView
-            android:id="@+id/tanggalProduknya"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/hargaProduk"
-            android:layout_toRightOf="@id/tanggalProduk"
-            android:text="Tanggalproduk" />
-
-        <TextView
-            android:id="@+id/kuantitasProduk"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tanggalProduk"
-            android:text="Kuantitas:\t" />
 
         <TextView
             android:id="@+id/kuantitasProduknya"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/tanggalProduknya"
-            android:layout_toRightOf="@id/kuantitasProduk"
+            android:layout_below="@id/hargaProduk"
+            android:layout_alignParentRight="true"
             android:text="kuantitas produk" />
     </RelativeLayout>
 

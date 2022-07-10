@@ -7,69 +7,22 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/promptNama"
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/searchFilter"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nama Produk:" />
+        android:layout_height="wrap_content"/>
 
-    <EditText
-        android:id="@+id/editTextNama"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Nama produk" />
-
-    <TextView
-        android:id="@+id/promptHarga"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Harga Produk:" />
-
-    <EditText
-        android:id="@+id/editTextHarga"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Harga produk" />
-
-    <TextView
-        android:id="@+id/promptTanggal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Tanggal Produk:" />
-
-    <EditText
-        android:id="@+id/editTextTanggal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tanggal produk" />
-
-    <TextView
-        android:id="@+id/promptKuantitas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Kuantitas Produk:" />
-
-    <EditText
-        android:id="@+id/editTextKuantiti"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Kuantitas produk" />
+        android:layout_weight="1"/>
 
     <Button
-        android:id="@+id/addProduk"
+        android:id="@+id/testAdd"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="20dp"
-        android:orientation="vertical">
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recyclerView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </LinearLayout>
+        android:backgroundTint="@color/green"
+        android:text="Add product" />
 
 </LinearLayout>
