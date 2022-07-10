@@ -46,8 +46,12 @@ public class TestAdd extends AppCompatActivity implements View.OnClickListener{
         kuantitiP= (EditText) findViewById(R.id.editTextKuantiti) ;
         addP = (Button) findViewById(R.id.addProduk) ;
         returnToMain = (Button) findViewById(R.id.returnTo) ;
-        imageUri = Uri.parse("android.resource://com.moop.daftarpenjualanbaranguas/" + R.drawable.gambarbebasplaceholder) ;
-        image = BitmapFactory.decodeFile(imageUri.toString());
+        try {
+            imageUri = Uri.parse("android.resource://com.moop.daftarpenjualanbaranguas/" + R.drawable.gambarbebasplaceholder) ;
+            image = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
         returnToMain.setOnClickListener(this) ;
         productImage.setOnClickListener(this);
@@ -71,6 +75,7 @@ public class TestAdd extends AppCompatActivity implements View.OnClickListener{
                 String deskripsi = String.valueOf(deskripsiP.getText()) ;
                 String date = String.valueOf(tanggalP.getText());
                 String kuantiti = String.valueOf(kuantitiP.getText()) ;
+                image = Bitmap.createScaledBitmap(image, 320, 320, false);
 
                 if(!name.equals("") && !price.equals("") && !date.equals("") && !kuantiti.equals("") && price.matches("[0-9]*$") && kuantiti.matches("[0-9]*$")){
                     try {
@@ -100,7 +105,6 @@ public class TestAdd extends AppCompatActivity implements View.OnClickListener{
                 try {
                     imageUri = data.getData() ;
                     image = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
-                    image = Bitmap.createScaledBitmap(image, 320, 320, false);
                     productImage.setImageBitmap(image);
                 } catch (IOException e) {
                     e.printStackTrace();
