@@ -1,23 +1,24 @@
 package com.moop.daftarpenjualanbaranguas;
 
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Parcel;
 import android.os.Parcelable;
 
 public class DataModel implements Parcelable {
     private String nama, harga, deskripsi, tanggal, kuantiti;
-    private Uri imageLoc ;
+    private Bitmap image ;
     public DataModel(){
 
     }
 
-    public DataModel(String nama, String harga, String deskripsi, String tanggal, String kuantiti, Uri imageLoc) {
+    public DataModel(String nama, String harga, String deskripsi, String tanggal, String kuantiti, Bitmap image) {
         this.nama = nama;
         this.harga = harga;
         this.tanggal = tanggal;
         this.deskripsi = deskripsi;
         this.kuantiti = kuantiti ;
-        this.imageLoc = imageLoc ;
+        this.image = image ;
     }
 
     protected DataModel(Parcel in) {
@@ -26,7 +27,7 @@ public class DataModel implements Parcelable {
         deskripsi = in.readString();
         tanggal = in.readString();
         kuantiti = in.readString();
-        imageLoc = in.readParcelable(Uri.class.getClassLoader());
+        image = in.readParcelable(Bitmap.class.getClassLoader());
     }
 
     public static final Creator<DataModel> CREATOR = new Creator<DataModel>() {
@@ -81,12 +82,12 @@ public class DataModel implements Parcelable {
         this.deskripsi = deskripsi;
     }
 
-    public Uri getImageLoc() {
-        return imageLoc;
+    public Bitmap getImage() {
+        return image;
     }
 
-    public void setImageLoc(Uri imageLoc) {
-        this.imageLoc = imageLoc;
+    public void setImage(Bitmap image) {
+        this.image = image;
     }
 
     @Override
@@ -101,6 +102,6 @@ public class DataModel implements Parcelable {
         parcel.writeString(deskripsi);
         parcel.writeString(tanggal);
         parcel.writeString(kuantiti);
-        parcel.writeParcelable(imageLoc, i);
+        parcel.writeParcelable(image, i);
     }
 }

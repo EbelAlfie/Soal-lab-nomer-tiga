@@ -39,7 +39,7 @@ public class JualBeliAdapter extends RecyclerView.Adapter<JualBeliAdapter.ItemVi
     @Override
     public void onBindViewHolder(@NonNull ItemViewHolder holder, int position) {
         DataModel exclusiveItem = data.get(position) ;
-        holder.productImg.setImageURI(exclusiveItem.getImageLoc());
+        holder.productImg.setImageBitmap(exclusiveItem.getImage());
         holder.txtNama.setText(exclusiveItem.getNama());
         holder.txtHarga.setText("Rp. " + exclusiveItem.getHarga());
         holder.txtDeskripsi.setText(exclusiveItem.getDeskripsi());

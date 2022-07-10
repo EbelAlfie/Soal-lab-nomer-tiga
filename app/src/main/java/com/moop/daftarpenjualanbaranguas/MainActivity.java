@@ -2,13 +2,16 @@ package com.moop.daftarpenjualanbaranguas;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.Manifest;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -17,6 +20,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity implements JualBeliAdapter.OnitemClickListener {
+    private static final int PICK_FROM_GALLERY = 23;
     private RecyclerView recyclerView ;
     private JualBeliAdapter adapter ;
     private ArrayList<DataModel> datas;
@@ -33,6 +37,9 @@ public class MainActivity extends AppCompatActivity implements JualBeliAdapter.O
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PICK_FROM_GALLERY);
+        }
         searchView = (SearchView) findViewById(R.id.searchFilter);
         //searchView.clearFocus();
         recyclerView = (RecyclerView) findViewById(R.id.recyclerView) ;
@@ -92,14 +99,12 @@ public class MainActivity extends AppCompatActivity implements JualBeliAdapter.O
 
     @Override
     public void onItemClick(int position) {
-        Bundle bundle = new Bundle() ;
-        bundle.putParcelable("ItemToDisplay", datas.get(position));
-        Fragment productDetail = new ProductInformation();
-        productDetail.setArguments(bundle);
-        FragmentManager fragmentManager = getSupportFragmentManager();
-        FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.replace(R.id.linearLayout, productDetail);
-        ft.addToBackStack(null);
-        ft.commit() ;
+        try {
+            Intent intent = new Intent(getApplicationContext(), InformasiLengkap.class);
+            intent.putExtra("ItemToDisplay", datas.get(position));
+            startActivity(intent);
+        }catch(Exception e){
+            e.printStackTrace();
+        }
     }
 }

@@ -8,7 +8,10 @@ import android.Manifest;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.view.View;
@@ -17,6 +20,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.io.Serializable;
 
 public class TestAdd extends AppCompatActivity implements View.OnClickListener{
@@ -26,6 +30,7 @@ public class TestAdd extends AppCompatActivity implements View.OnClickListener{
     private DataModel added;
     private Uri imageUri ;
     private ImageView productImage;
+    private Bitmap image;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +47,7 @@ public class TestAdd extends AppCompatActivity implements View.OnClickListener{
         addP = (Button) findViewById(R.id.addProduk) ;
         returnToMain = (Button) findViewById(R.id.returnTo) ;
         imageUri = Uri.parse("android.resource://com.moop.daftarpenjualanbaranguas/" + R.drawable.gambarbebasplaceholder) ;
+        image = BitmapFactory.decodeFile(imageUri.toString());
 
         returnToMain.setOnClickListener(this) ;
         productImage.setOnClickListener(this);
@@ -52,7 +58,7 @@ public class TestAdd extends AppCompatActivity implements View.OnClickListener{
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.imageView:
-                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                if (ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
                     ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.WRITE_EXTERNAL_STORAGE}, PICK_FROM_GALLERY);
                 } else {
                     Intent galeryIntent = new Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
@@ -65,16 +71,15 @@ public class TestAdd extends AppCompatActivity implements View.OnClickListener{
                 String deskripsi = String.valueOf(deskripsiP.getText()) ;
                 String date = String.valueOf(tanggalP.getText());
                 String kuantiti = String.valueOf(kuantitiP.getText()) ;
+
                 if(!name.equals("") && !price.equals("") && !date.equals("") && !kuantiti.equals("") && price.matches("[0-9]*$") && kuantiti.matches("[0-9]*$")){
-                    added = new DataModel(name, price, deskripsi, date, kuantiti, imageUri) ;
+                    try {
+                    added = new DataModel(name, price, deskripsi, date, kuantiti, image) ;
                     Toast.makeText(TestAdd.this, "Data added", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class) ;
-                    //Bundle bundle = new Bundle() ;
-                    try {
-                        intent.putExtra("AddedData", added);
-                        //intent.putExtra("bandel", bundle) ;
-                        setResult(12, intent);
-                        finish();
+                    intent.putExtra("AddedData", added);
+                    setResult(12, intent);
+                    finish();
                     }catch(Exception e){
                         e.printStackTrace();
                     }
@@ -92,8 +97,14 @@ public class TestAdd extends AppCompatActivity implements View.OnClickListener{
     public void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         if(requestCode == 1){
             if(resultCode == Activity.RESULT_OK){
-                imageUri = data.getData() ;
-                productImage.setImageURI(imageUri);
+                try {
+                    imageUri = data.getData() ;
+                    image = MediaStore.Images.Media.getBitmap(getContentResolver(), imageUri);
+                    image = Bitmap.createScaledBitmap(image, 320, 320, false);
+                    productImage.setImageBitmap(image);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
