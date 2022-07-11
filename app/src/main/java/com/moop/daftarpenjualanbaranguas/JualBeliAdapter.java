@@ -42,7 +42,7 @@ public class JualBeliAdapter extends RecyclerView.Adapter<JualBeliAdapter.ItemVi
         holder.productImg.setImageBitmap(exclusiveItem.getImage());
         holder.txtNama.setText(exclusiveItem.getNama());
         holder.txtHarga.setText("Rp. " + exclusiveItem.getHarga());
-        holder.txtDeskripsi.setText(exclusiveItem.getDeskripsi());
+        holder.txtToko.setText(exclusiveItem.getToko());
         holder.txtKuantitas.setText(exclusiveItem.getKuantiti() + " Left");
     }
 
@@ -52,13 +52,13 @@ public class JualBeliAdapter extends RecyclerView.Adapter<JualBeliAdapter.ItemVi
     }
 
     public static class ItemViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-        TextView txtNama, txtHarga, txtDeskripsi, txtKuantitas ;
+        TextView txtNama, txtHarga, txtToko, txtKuantitas ;
         ImageView productImg;
         OnitemClickListener onitemClickListener ;
         public ItemViewHolder(@NonNull View itemView, OnitemClickListener onitemClickListener) {
             super(itemView);
             txtNama = (TextView) itemView.findViewById(R.id.produknya) ;
-            txtDeskripsi = (TextView) itemView. findViewById(R.id.deskripsiproduknya) ;
+            txtToko = (TextView) itemView. findViewById(R.id.tokoproduknya) ;
             txtHarga = (TextView) itemView.findViewById(R.id.hargaproduknya) ;
             productImg = (ImageView) itemView.findViewById(R.id.gambarnya) ;
             txtKuantitas= (TextView) itemView.findViewById(R.id.kuantitasProduknya);

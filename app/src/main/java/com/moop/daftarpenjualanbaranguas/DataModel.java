@@ -6,19 +6,21 @@ import android.os.Parcel;
 import android.os.Parcelable;
 
 public class DataModel implements Parcelable {
-    private String nama, harga, deskripsi, tanggal, kuantiti;
-    private Bitmap image ;
-    public DataModel(){
+    private String nama, harga, deskripsi, tanggal, kuantiti, toko;
+    private Bitmap image;
+
+    public DataModel() {
 
     }
 
-    public DataModel(String nama, String harga, String deskripsi, String tanggal, String kuantiti, Bitmap image) {
+    public DataModel(String nama, String harga, String deskripsi, String tanggal, String kuantiti, String toko, Bitmap image) {
         this.nama = nama;
         this.harga = harga;
-        this.tanggal = tanggal;
         this.deskripsi = deskripsi;
-        this.kuantiti = kuantiti ;
-        this.image = image ;
+        this.tanggal = tanggal;
+        this.kuantiti = kuantiti;
+        this.toko = toko;
+        this.image = image;
     }
 
     protected DataModel(Parcel in) {
@@ -27,6 +29,7 @@ public class DataModel implements Parcelable {
         deskripsi = in.readString();
         tanggal = in.readString();
         kuantiti = in.readString();
+        toko = in.readString();
         image = in.readParcelable(Bitmap.class.getClassLoader());
     }
 
@@ -90,6 +93,14 @@ public class DataModel implements Parcelable {
         this.image = image;
     }
 
+    public String getToko() {
+        return toko;
+    }
+
+    public void setToko(String toko) {
+        this.toko = toko;
+    }
+
     @Override
     public int describeContents() {
         return 0;
@@ -102,6 +113,7 @@ public class DataModel implements Parcelable {
         parcel.writeString(deskripsi);
         parcel.writeString(tanggal);
         parcel.writeString(kuantiti);
+        parcel.writeString(toko);
         parcel.writeParcelable(image, i);
     }
 }

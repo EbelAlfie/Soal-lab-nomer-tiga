@@ -36,7 +36,20 @@
         android:id="@+id/editTextDesc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:inputType="text"
         android:hint="Deskripsi produk" />
+
+    <TextView
+        android:id="@+id/promptToko"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Toko Produk:" />
+
+    <EditText
+        android:id="@+id/editTextToko"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Toko produk" />
 
     <TextView
         android:id="@+id/promptHarga"

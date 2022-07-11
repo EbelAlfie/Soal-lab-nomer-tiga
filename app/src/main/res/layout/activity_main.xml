@@ -26,7 +26,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:backgroundTint="#11D52B"
+        android:backgroundTint="#39B1C1"
         android:text="Add product" />
 
 </LinearLayout>

@@ -8,7 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 public class InformasiLengkap extends AppCompatActivity {
-    private TextView namaP, tanggalP, deskripsiP, hargaP, kuantitasP;
+    private TextView namaP, tanggalP, deskripsiP, hargaP, kuantitasP, tokoP;
     private ImageView productImage ;
     private DataModel data;
     @Override
@@ -23,6 +23,7 @@ public class InformasiLengkap extends AppCompatActivity {
 
         productImage = (ImageView) findViewById(R.id.imageView2);
         namaP = findViewById(R.id.namaProduktampil);
+        tokoP = findViewById(R.id.tokoproduktampil) ;
         tanggalP = findViewById(R.id.tanggalproduktampil);
         deskripsiP = findViewById(R.id.descproduktampil) ;
         hargaP = findViewById(R.id.hargaproduktampil) ;
@@ -32,6 +33,7 @@ public class InformasiLengkap extends AppCompatActivity {
             productImage.setImageBitmap(data.getImage());
             namaP.setText(data.getNama());
             tanggalP.setText(data.getTanggal());
+            tokoP.setText(data.getToko());
             deskripsiP.setText(data.getDeskripsi());
             hargaP.setText(data.getHarga());
             kuantitasP.setText(data.getKuantiti());

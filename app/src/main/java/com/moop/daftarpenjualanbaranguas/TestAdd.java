@@ -25,7 +25,7 @@ import java.io.Serializable;
 
 public class TestAdd extends AppCompatActivity implements View.OnClickListener{
     private static final int PICK_FROM_GALLERY = 1;
-    private EditText namaP, hargaP, deskripsiP, tanggalP, kuantitiP ;
+    private EditText namaP, hargaP, deskripsiP, tanggalP, kuantitiP, tokoP ;
     private Button addP, returnToMain ;
     private DataModel added;
     private Uri imageUri ;
@@ -42,6 +42,7 @@ public class TestAdd extends AppCompatActivity implements View.OnClickListener{
         namaP = (EditText) findViewById(R.id.editTextNama) ;
         hargaP =(EditText) findViewById(R.id.editTextHarga) ;
         deskripsiP = (EditText) findViewById(R.id.editTextDesc) ;
+        tokoP = (EditText) findViewById(R.id.editTextToko) ;
         tanggalP= (EditText) findViewById(R.id.editTextTanggal) ;
         kuantitiP= (EditText) findViewById(R.id.editTextKuantiti) ;
         addP = (Button) findViewById(R.id.addProduk) ;
@@ -73,13 +74,14 @@ public class TestAdd extends AppCompatActivity implements View.OnClickListener{
                 String name = String.valueOf(namaP.getText());
                 String price = String.valueOf(hargaP.getText());
                 String deskripsi = String.valueOf(deskripsiP.getText()) ;
+                String toko = String.valueOf(tokoP.getText()) ;
                 String date = String.valueOf(tanggalP.getText());
                 String kuantiti = String.valueOf(kuantitiP.getText()) ;
                 image = Bitmap.createScaledBitmap(image, 320, 320, false);
 
-                if(!name.equals("") && !price.equals("") && !date.equals("") && !kuantiti.equals("") && price.matches("[0-9]*$") && kuantiti.matches("[0-9]*$")){
+                if(!name.equals("") && !price.equals("") && !date.equals("") && !kuantiti.equals("") && price.matches("[0-9]*$") && kuantiti.matches("[0-9]*$") && !toko.equals("")){
                     try {
-                    added = new DataModel(name, price, deskripsi, date, kuantiti, image) ;
+                    added = new DataModel(name, price, deskripsi, date, kuantiti, toko, image) ;
                     Toast.makeText(TestAdd.this, "Data added", Toast.LENGTH_SHORT).show();
                     Intent intent = new Intent(getApplicationContext(), MainActivity.class) ;
                     intent.putExtra("AddedData", added);
